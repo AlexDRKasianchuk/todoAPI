@@ -24,4 +24,22 @@ public class TaskService {
         taskRepository.save(task);
         return "Added";
     }
+
+    public void updateTaskText(int id, String text) {
+        TaskModel task = taskRepository.getById(id);
+        task.setText(text);
+        task.setDate(LocalDateTime.now());
+        taskRepository.save(task);
+    }
+
+    public void updateTaskStatus(int id) {
+        TaskModel task = taskRepository.getById(id);
+        task.setStatus(!task.getStatus());
+        taskRepository.save(task);
+    }
+
+    public void deleteTask(int id) {
+        TaskModel task = taskRepository.getById(id);
+        taskRepository.delete(task);
+    }
 }

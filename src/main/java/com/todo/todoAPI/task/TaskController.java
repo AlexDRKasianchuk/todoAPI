@@ -29,19 +29,22 @@ public class TaskController {
 
     //update task information
     @PutMapping("/{id}")
-    public ResponseEntity<?> updateTask(@PathVariable int id){
+    public ResponseEntity<?> updateTask(@PathVariable int id,@RequestBody Map<String,String> taskModel){
+        taskService.updateTaskText(id, taskModel.get("text"));
         return ResponseEntity.status(200).build();
     }
 
     //update task status
     @PutMapping("/checked/{id}")
     public ResponseEntity<?> checkTask(@PathVariable int id){
+        taskService.updateTaskStatus(id);
         return ResponseEntity.status(200).build();
     }
 
     //delete task
     @DeleteMapping("/{id}")
     public ResponseEntity<?> deleteTask(@PathVariable int id){
+        taskService.deleteTask(id);
         return ResponseEntity.status(200).build();
     }
 
